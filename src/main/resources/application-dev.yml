@@ -1,0 +1,45 @@
+server:
+  port: 9000
+druid:
+  url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+  driverClassName: com.mysql.jdbc.Driver
+  username: root
+  password: root
+  maxActive: 20
+  initialSize: 1
+  maxWait: 60000
+  minIdle: 10
+  maxIdle: 15
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: SELECT 'x'
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  maxOpenPreparedStatements: 20
+  removeAbandoned: true
+  removeAbandonedTimeout: 1800
+  logAbandoned: true
+  filters: stat,wall,slf4j
+mybatis:
+  type-aliases-package: com.aloha.model
+  mapper-locations: classpath:mapper/*.xml
+
+mapper:
+  mappers:
+      - com.aloha.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+pagination:
+  page: 1
+  rows : 10
+logging:
+  level:
+    com.aloha: TRACE
+
